@@ -1,0 +1,5 @@
+templ generate --watch --proxy=http:localhost:4200
+
+air
+
+make css

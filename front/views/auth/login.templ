@@ -1,0 +1,36 @@
+package auth
+
+templ Login() {
+    <div class="w-full flex items-center justify-center">
+        <h1 class="text-lg font-semibold">Login</h1>
+        <form action="/auth/login" method="post">
+            <input type="text" name="username" placeholder="Username" />
+            <input type="password" name="password" placeholder="Password" />
+            <input type="submit" value="Login" />
+        </form>
+        <button onclick="fetchData()" class="px-4 py-2 bg-blue-500 text-white rounded">Fetch Data</button>
+    </div>
+    <script>
+        // Function to fetch data from the backend and log the response
+        async function fetchData() {
+            try {
+                // Send GET request to the backend
+                const response = await fetch('http://localhost:8080/tickers');
+                
+                // Check if the request was successful
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                
+                // Parse the response as JSON
+                const data = await response.json();
+                
+                // Log the response data to the console
+                console.log(data);
+            } catch (error) {
+                // Log any errors that occur during the fetch
+                console.error('Fetch error:', error);
+            }
+        }
+    </script>
+}
